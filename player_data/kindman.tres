@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://bhf3t7l1umlu0"]
+
+[ext_resource type="Texture2D" uid="uid://dq63ocnu3lset" path="res://assets/sprites/Players/Player_3.png" id="1_bc5ib"]
+[ext_resource type="Script" uid="uid://4b0scqwykoj0" path="res://player_data/stats/stats.gd" id="2_waip4"]
+
+[resource]
+script = ExtResource("2_waip4")
+type = 0
+_name = "kindman"
+nick_name = "西瓜"
+icon = ExtResource("1_bc5ib")
+attack_power = 2
+speed = 245
+health = 15
+critical_rate = 0.2
+equip_radius = 80
+drop_glod = 0
+metadata/_custom_type_script = "uid://4b0scqwykoj0"

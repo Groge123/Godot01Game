@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2dcgsgxid88o"]
+
+[ext_resource type="Script" uid="uid://4u8x4v56lqyp" path="res://scripts/bullet.gd" id="1_cyo7h"]
+[ext_resource type="Texture2D" uid="uid://45dwbyxmy4wd" path="res://assets/sprites/Projectiles/Projectile_2.png" id="2_c7w6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efdbo"]
+size = Vector2(4.6317, 4.49927)
+
+[node name="Bullet" type="Area2D"]
+z_index = 100
+collision_layer = 4
+collision_mask = 10
+script = ExtResource("1_cyo7h")
+
+[node name="texture" type="Sprite2D" parent="."]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_c7w6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4.10471, 4.00065)
+shape = SubResource("RectangleShape2D_efdbo")
+
+[node name="survival_time" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="survival_time" to="." method="_on_survival_time_timeout"]

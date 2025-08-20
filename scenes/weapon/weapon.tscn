@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0u6w5rf48dxn"]
+
+[ext_resource type="Script" uid="uid://wiekkn1tjg7b" path="res://scripts/weapon.gd" id="1_jej8l"]
+[ext_resource type="Texture2D" uid="uid://l5hst1cf27oo" path="res://assets/sprites/Weapons/Melee/Weapon_Punch.png" id="1_l3xq3"]
+[ext_resource type="Script" uid="uid://mhiyqf6mmxdd" path="res://player_data/stats/weapon_stats.gd" id="2_iyg5g"]
+[ext_resource type="AudioStream" uid="uid://g72hyxdnaath" path="res://assets/audio/ShotgunFire.wav" id="3_ylpk0"]
+[ext_resource type="Script" uid="uid://dv5xjxjqsqnv7" path="res://scripts/detect_area.gd" id="4_lopa8"]
+[ext_resource type="Shader" uid="uid://dc41doe3vpkds" path="res://shader/outline.gdshader" id="4_ypwvo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmlwb"]
+shader = ExtResource("4_ypwvo")
+shader_parameter/outline_width = 5.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iyg5g"]
+radius = 29.4
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lopa8"]
+radius = 204.48
+
+[node name="weapon" type="Node2D" groups=["weapon"]]
+z_index = 4
+script = ExtResource("1_jej8l")
+weapon_data = ExtResource("2_iyg5g")
+attack_sound = ExtResource("3_ylpk0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_xmlwb")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_l3xq3")
+
+[node name="attack_area" type="Area2D" parent="Sprite"]
+scale = Vector2(1.66667, 1.66667)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/attack_area"]
+shape = SubResource("CircleShape2D_iyg5g")
+
+[node name="detect_area" type="Area2D" parent="." groups=["weapon"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_lopa8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect_area"]
+shape = SubResource("CircleShape2D_lopa8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="detect_area" to="." method="_on_detect_area_area_entered"]
+[connection signal="area_exited" from="detect_area" to="." method="_on_detect_area_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

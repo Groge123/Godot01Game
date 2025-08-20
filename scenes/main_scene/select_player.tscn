@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://b76delf8bjiw8"]
+
+[ext_resource type="Script" uid="uid://cln0el8qj0ubi" path="res://scripts/select_player.gd" id="1_x7g4t"]
+[ext_resource type="PackedScene" uid="uid://44aim6351yj6" path="res://scenes/cards/card.tscn" id="2_4dmis"]
+[ext_resource type="Resource" uid="uid://bjpc2p6op2ul0" path="res://player_data/pirate.tres" id="3_ib2f2"]
+[ext_resource type="Resource" uid="uid://bhf3t7l1umlu0" path="res://player_data/kindman.tres" id="4_unmom"]
+[ext_resource type="Resource" uid="uid://bih52onecm30m" path="res://player_data/rabbit.tres" id="5_gyf0f"]
+[ext_resource type="Resource" uid="uid://d0gqs12bpluox" path="res://player_data/assassin.tres" id="6_uk3y8"]
+[ext_resource type="PackedScene" uid="uid://c5mo4w71cnmo1" path="res://scenes/UI/button_with_sound.tscn" id="8_7vdyi"]
+[ext_resource type="PackedScene" uid="uid://bnkxdudccj763" path="res://scenes/show_player_card.tscn" id="8_gyf0f"]
+
+[node name="select_player" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x7g4t")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(9.04858e-06, 0.964389, 0.917717, 0.427451)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -404.0
+offset_right = 608.0
+grow_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="basic" parent="CenterContainer/GridContainer" instance=ExtResource("2_4dmis")]
+layout_mode = 2
+
+[node name="pirate" parent="CenterContainer/GridContainer" instance=ExtResource("2_4dmis")]
+layout_mode = 2
+data = ExtResource("3_ib2f2")
+
+[node name="kind" parent="CenterContainer/GridContainer" instance=ExtResource("2_4dmis")]
+layout_mode = 2
+data = ExtResource("4_unmom")
+
+[node name="rabbit" parent="CenterContainer/GridContainer" instance=ExtResource("2_4dmis")]
+layout_mode = 2
+data = ExtResource("5_gyf0f")
+
+[node name="assassin" parent="CenterContainer/GridContainer" instance=ExtResource("2_4dmis")]
+layout_mode = 2
+data = ExtResource("6_uk3y8")
+
+[node name="show_player_card" parent="." instance=ExtResource("8_gyf0f")]
+layout_mode = 1
+offset_left = 947.0
+offset_top = 119.0
+offset_right = 1447.0
+offset_bottom = 419.0
+scale = Vector2(1.5, 1.5)
+
+[node name="exit" parent="." instance=ExtResource("8_7vdyi")]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 200.0
+offset_bottom = 94.0
+grow_horizontal = 1
+grow_vertical = 1
+theme_type_variation = &"ButtonPrimary"
+theme_override_font_sizes/font_size = 60
+text = "eixt"
+
+[node name="enter" parent="." instance=ExtResource("8_7vdyi")]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -94.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"ButtonPrimary"
+theme_override_font_sizes/font_size = 60
+text = "enter"
+
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="enter" to="." method="_on_enter_pressed"]

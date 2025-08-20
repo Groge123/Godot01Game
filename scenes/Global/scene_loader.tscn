@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cabxv3toh4yi4"]
+
+[ext_resource type="Script" uid="uid://cxaf0tq24n1v4" path="res://scene_loader.gd" id="1_vhei7"]
+[ext_resource type="Shader" uid="uid://b3hrallb0s878" path="res://shader/circle_mask.gdshader" id="2_dneb1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ewel"]
+shader = ExtResource("2_dneb1")
+shader_parameter/_Color = Color(0, 0, 0, 1)
+shader_parameter/_Radius = 0.0
+shader_parameter/_Smoot = 0.04
+shader_parameter/_Position = Vector2(0.5, 0.5)
+
+[node name="SceneLoader" type="CanvasLayer"]
+script = ExtResource("1_vhei7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6ewel")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://dca3tdiykn613"]
+
+[ext_resource type="PackedScene" uid="uid://cbyx33yoclrj1" path="res://scenes/Character/basic_player.tscn" id="1_5n8e4"]
+[ext_resource type="Resource" uid="uid://bjpc2p6op2ul0" path="res://player_data/pirate.tres" id="2_5picn"]
+[ext_resource type="Texture2D" uid="uid://dpxw8tsbgrfse" path="res://assets/sprites/Players/Player_2.png" id="2_l4mup"]
+
+[node name="pirate" instance=ExtResource("1_5n8e4")]
+basic_data = ExtResource("2_5picn")
+
+[node name="Sprite" parent="Visuals" index="1"]
+texture = ExtResource("2_l4mup")

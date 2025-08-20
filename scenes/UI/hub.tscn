@@ -1,0 +1,132 @@
+[gd_scene load_steps=11 format=3 uid="uid://vgsw4lnf4twt"]
+
+[ext_resource type="Theme" uid="uid://cq4trsewtksxu" path="res://theme/Font.tres" id="1_s4dxt"]
+[ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="1_sakiw"]
+[ext_resource type="Script" uid="uid://bo8gy66at8f52" path="res://scripts/hub.gd" id="2_di23n"]
+[ext_resource type="Texture2D" uid="uid://chm4srsn6xd8y" path="res://assets/sprites/Gold/gold_1.png" id="2_gdr0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdr0e"]
+bg_color = Color(0.588235, 0.588235, 0.588235, 0.313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4dxt"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8hy5"]
+bg_color = Color(0.588235, 0.588235, 0.588235, 0.352941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hjbn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di23n"]
+bg_color = Color(0.588235, 0.588235, 0.588235, 0.352941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oedt2"]
+bg_color = Color(1, 1, 0, 0.658824)
+
+[node name="Hub" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s4dxt")
+script = ExtResource("2_di23n")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("1_sakiw")
+
+[node name="LV" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "LV :"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+
+[node name="hp_bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_gdr0e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s4dxt")
+max_value = 10.0
+value = 5.0
+rounded = true
+show_percentage = false
+
+[node name="hp" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/hp_bar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -18.125
+offset_right = 20.0
+offset_bottom = 18.125
+grow_horizontal = 2
+grow_vertical = 2
+text = "5/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shield_bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_f8hy5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4hjbn")
+max_value = 10.0
+value = 5.0
+show_percentage = false
+
+[node name="shield" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/shield_bar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -18.125
+offset_right = 20.0
+offset_bottom = 18.125
+grow_horizontal = 2
+grow_vertical = 2
+text = "5/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EX" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_di23n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oedt2")
+value = 50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_gdr0e")
+expand_mode = 2
+
+[node name="coins" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

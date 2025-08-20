@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="weapon_stats" load_steps=3 format=3 uid="uid://cg2jryow27j2"]
+
+[ext_resource type="Texture2D" uid="uid://ctbl7s5o37g7v" path="res://assets/sprites/Weapons/Icons/weapon_pistol_icon.png" id="1_1j2c4"]
+[ext_resource type="Script" uid="uid://mhiyqf6mmxdd" path="res://player_data/stats/weapon_stats.gd" id="2_uc6e5"]
+
+[resource]
+script = ExtResource("2_uc6e5")
+basic_damage = 5
+critical_chance = 0.3
+attack_range = 350
+interval_time = 0.5
+icon = ExtResource("1_1j2c4")
+metadata/_custom_type_script = "uid://mhiyqf6mmxdd"

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5mo4w71cnmo1"]
+
+[ext_resource type="Script" uid="uid://jp6fryedaaot" path="res://scripts/button_with_sound.gd" id="1_ke3j1"]
+
+[node name="ButtonWithSound" type="Button"]
+custom_minimum_size = Vector2(200, 80)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 401.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ke3j1")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

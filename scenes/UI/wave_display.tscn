@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://uyyaq8t5a31"]
+
+[ext_resource type="Script" uid="uid://tq1b01re2n5b" path="res://scripts/wave_display.gd" id="1_gqjor"]
+[ext_resource type="Theme" uid="uid://cq4trsewtksxu" path="res://theme/Font.tres" id="2_ygxnv"]
+
+[node name="wave_display" type="CanvasLayer"]
+script = ExtResource("1_gqjor")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("2_ygxnv")
+
+[node name="wave" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_ygxnv")
+theme_override_font_sizes/font_size = 60
+text = "第一波"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="wave_time" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("2_ygxnv")
+theme_override_font_sizes/font_size = 60
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

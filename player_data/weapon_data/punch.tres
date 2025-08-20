@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="weapon_stats" load_steps=3 format=3 uid="uid://c2e0yw7kxgbxn"]
+
+[ext_resource type="Script" uid="uid://mhiyqf6mmxdd" path="res://player_data/stats/weapon_stats.gd" id="1_1kxnh"]
+[ext_resource type="Texture2D" uid="uid://cyh23wqn8vcac" path="res://assets/sprites/Weapons/Icons/weapon_punch_icon.png" id="1_4x4y1"]
+
+[resource]
+script = ExtResource("1_1kxnh")
+basic_damage = 2
+critical_chance = 0.1
+attack_range = 300
+interval_time = 0.2
+icon = ExtResource("1_4x4y1")
+metadata/_custom_type_script = "uid://mhiyqf6mmxdd"

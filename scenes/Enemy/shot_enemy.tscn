@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvajbl461ujgg"]
+
+[ext_resource type="PackedScene" uid="uid://ljranha307rb" path="res://scenes/Enemy/enemy.tscn" id="1_b1bnk"]
+[ext_resource type="Script" uid="uid://b76ihf0pw5wj4" path="res://scripts/shot_enemy.gd" id="2_xnkks"]
+[ext_resource type="Texture2D" uid="uid://4mllmwdfhmce" path="res://assets/sprites/Enemies/Enemy_4.png" id="3_tuns8"]
+[ext_resource type="Resource" uid="uid://di82wsb43cwdo" path="res://scripts/Enemy_data/shot_enemy.tres" id="4_tuns8"]
+[ext_resource type="PackedScene" uid="uid://7e8kws8ijw5s" path="res://scenes/weapon/enemy_bullet.tscn" id="4_xnkks"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wam63"]
+radius = 400.0
+
+[node name="shot_enemy" instance=ExtResource("1_b1bnk")]
+script = ExtResource("2_xnkks")
+bullet = ExtResource("4_xnkks")
+basic_data = ExtResource("4_tuns8")
+
+[node name="Sprite" parent="Visuals" index="1"]
+texture = ExtResource("3_tuns8")
+
+[node name="shot_pos" type="Node2D" parent="Visuals/Sprite" index="0"]
+position = Vector2(-59.7065, 11.4394)
+scale = Vector2(1.88083, 2.1353)
+
+[node name="CollisionShape2D" parent="vision_area" index="0"]
+shape = SubResource("CircleShape2D_wam63")
+
+[node name="wait_time" type="Timer" parent="." index="5"]
+
+[connection signal="area_entered" from="vision_area" to="." method="_on_vision_area_area_entered"]
+[connection signal="area_exited" from="vision_area" to="." method="_on_vision_area_area_exited"]
+[connection signal="timeout" from="wait_time" to="." method="_on_wait_time_timeout"]

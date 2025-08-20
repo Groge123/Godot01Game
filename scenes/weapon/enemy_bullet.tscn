@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://7e8kws8ijw5s"]
+
+[ext_resource type="PackedScene" uid="uid://c2dcgsgxid88o" path="res://scenes/weapon/bullet.tscn" id="1_kigit"]
+[ext_resource type="Texture2D" uid="uid://dkji1b4um54aj" path="res://assets/sprites/Projectiles/Projectile_enemy.png" id="2_gmlsp"]
+
+[node name="enemy_bullet" instance=ExtResource("1_kigit")]
+collision_mask = 11
+target_group = "player"
+
+[node name="texture" parent="." index="0"]
+texture = ExtResource("2_gmlsp")

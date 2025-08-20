@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://bh3ewd7mmwt54"]
+
+[ext_resource type="Texture2D" uid="uid://chm4srsn6xd8y" path="res://assets/sprites/Gold/gold_1.png" id="1_gkfoj"]
+[ext_resource type="Theme" uid="uid://g30aski2oekw" path="res://theme/themes/main_theme.tres" id="1_h5xe6"]
+[ext_resource type="Script" uid="uid://chkrpkgthui80" path="res://scripts/upgrade_page.gd" id="1_pjnsb"]
+[ext_resource type="PackedScene" uid="uid://cbugqxp3ccd85" path="res://scenes/cards/property_card.tscn" id="3_xom85"]
+[ext_resource type="PackedScene" uid="uid://bc2xby0c4ywro" path="res://scenes/cards/property_show.tscn" id="4_xom85"]
+
+[sub_resource type="Theme" id="Theme_pjnsb"]
+Label/font_sizes/font_size = 24
+
+[node name="Upgrade_page" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_pjnsb")
+property_card = ExtResource("3_xom85")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.294118, 0.294118, 0.294118, 0.392157)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h5xe6")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 1
+
+[node name="coins_text_show" type="MarginContainer" parent="MarginContainer/HBoxContainer/VSplitContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 550
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VSplitContainer/coins_text_show"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 55
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VSplitContainer/coins_text_show/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_gkfoj")
+stretch_mode = 2
+
+[node name="cur_coin_num" type="Label" parent="MarginContainer/HBoxContainer/VSplitContainer/coins_text_show/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "2"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/HBoxContainer/VSplitContainer"]
+layout_mode = 2
+dragging_enabled = false
+
+[node name="cards_show" type="MarginContainer" parent="MarginContainer/HBoxContainer/VSplitContainer/VSplitContainer"]
+custom_minimum_size = Vector2(1200, 350)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_bottom = 100
+
+[node name="cards" type="GridContainer" parent="MarginContainer/HBoxContainer/VSplitContainer/VSplitContainer/cards_show"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 50
+columns = 4
+
+[node name="refrash_" type="MarginContainer" parent="MarginContainer/HBoxContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="refresh" type="Button" parent="MarginContainer/HBoxContainer/VSplitContainer/VSplitContainer/refrash_"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_type_variation = &"ButtonPrimaryPlain"
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+text = "-2刷新"
+icon = ExtResource("1_gkfoj")
+expand_icon = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="property_show" parent="MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("4_xom85")]
+layout_mode = 2
+theme = SubResource("Theme_pjnsb")
+
+[node name="confirm" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 60
+text = "确认"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VSplitContainer/VSplitContainer/refrash_/refresh" to="." method="_on_refresh_pressed"]
+[connection signal="pressed" from="MarginContainer/confirm" to="." method="_on_confirm_pressed"]

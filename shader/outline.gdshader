@@ -1,0 +1,30 @@
+shader_type canvas_item;
+
+uniform float outline_width=5;
+uniform vec4 outline_color:source_color=vec4(1,1,1,1);
+
+void fragment() {
+	vec2 uv=UV;
+    vec2 uv_up=uv+vec2(0,TEXTURE_PIXEL_SIZE.y)*outline_width;
+    vec2 uv_down=uv+vec2(0,-TEXTURE_PIXEL_SIZE.y)*outline_width;
+    vec2 uv_left=uv+vec2(TEXTURE_PIXEL_SIZE.x,0)*outline_width;
+    vec2 uv_right=uv+vec2(-TEXTURE_PIXEL_SIZE.x,0)*outline_width;
+    
+    vec4 color_up=texture(TEXTURE,uv_up);
+    vec4 color_down=texture(TEXTURE,uv_down);
+    vec4 color_left=texture(TEXTURE,uv_left);
+    vec4 color_right=texture(TEXTURE,uv_right);
+    
+    
+    uv=uv_up+uv_down;
+    vec4 outline=color_up+color_down+color_left+color_right;
+    outline.rgb=outline_color.rgb;
+    vec4 original_tex=texture(TEXTURE,UV);
+    COLOR=mix(outline,original_tex,original_tex.a);
+    
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfn8w6ow1qcmc"]
+
+[ext_resource type="FontFile" uid="uid://kfh6ooeul77g" path="res://assets/font/Bake Soda.otf" id="1_1bvlm"]
+[ext_resource type="Script" uid="uid://gx2exdg5y8g8" path="res://scripts/health_bar.gd" id="1_y3kqx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3kqx"]
+bg_color = Color(0.6, 0.6, 0.6, 0.282353)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6opq1"]
+bg_color = Color(0.807212, 0, 0.204048, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 1
+shadow_offset = Vector2(0.25, 0.25)
+
+[node name="health_bar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_y3kqx")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 77.0
+offset_bottom = 21.0
+theme_override_styles/background = SubResource("StyleBoxFlat_y3kqx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6opq1")
+value = 6.0
+rounded = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 18.5
+offset_top = 0.833333
+offset_right = 58.5
+offset_bottom = 20.1667
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_1bvlm")
+theme_override_font_sizes/font_size = 16
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1

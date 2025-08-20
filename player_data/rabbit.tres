@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://bih52onecm30m"]
+
+[ext_resource type="Texture2D" uid="uid://dmox6e28kf6ax" path="res://assets/sprites/Players/Player_4.png" id="1_l1avi"]
+[ext_resource type="Script" uid="uid://4b0scqwykoj0" path="res://player_data/stats/stats.gd" id="2_hm8si"]
+
+[resource]
+script = ExtResource("2_hm8si")
+type = 0
+_name = "rabbit"
+nick_name = "兔曼"
+icon = ExtResource("1_l1avi")
+attack_power = 2
+speed = 350
+health = 10
+critical_rate = 0.1
+equip_radius = 80
+drop_glod = 0
+metadata/_custom_type_script = "uid://4b0scqwykoj0"

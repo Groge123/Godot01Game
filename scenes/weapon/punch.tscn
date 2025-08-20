@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsjnprhgd14pv"]
+
+[ext_resource type="PackedScene" uid="uid://d0u6w5rf48dxn" path="res://scenes/weapon/weapon.tscn" id="1_vjwa7"]
+[ext_resource type="Script" uid="uid://loxhbcg8khm6" path="res://scripts/punch.gd" id="2_w6lf8"]
+[ext_resource type="Resource" uid="uid://c2e0yw7kxgbxn" path="res://player_data/weapon_data/punch.tres" id="3_qct7f"]
+[ext_resource type="AudioStream" uid="uid://bah5akwld6a1" path="res://assets/audio/Punch.mp3" id="4_8ia0l"]
+
+[node name="Punch" instance=ExtResource("1_vjwa7")]
+script = ExtResource("2_w6lf8")
+weapon_data = ExtResource("3_qct7f")
+attack_sound = ExtResource("4_8ia0l")
+
+[node name="Timer" parent="." index="2"]
+wait_time = 0.05
+
+[connection signal="area_entered" from="Sprite/attack_area" to="." method="_on_attack_area_area_entered"]

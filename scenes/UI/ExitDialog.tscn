@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhqq26dddnxfv"]
+
+[ext_resource type="Script" uid="uid://ld06t4ubirtx" path="res://scripts/exit_dialog.gd" id="1_q1gmt"]
+[ext_resource type="Theme" uid="uid://g30aski2oekw" path="res://theme/themes/main_theme.tres" id="2_m0y0o"]
+
+[node name="exit_dialog" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+script = ExtResource("1_q1gmt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="VSplitContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -190.0
+offset_right = 242.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 80
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/HSplitContainer"]
+layout_mode = 2
+theme = ExtResource("2_m0y0o")
+theme_type_variation = &"PanelContainerWarningFlat"
+
+[node name="Label" type="Label" parent="Control/HSplitContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 36
+text = "确认退出吗"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/HSplitContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/HSplitContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HSplitContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="comfirm" type="Button" parent="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ButtonPrimary"
+theme_override_font_sizes/font_size = 30
+text = "确认退出"
+
+[node name="cancel" type="Button" parent="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ButtonDanger"
+theme_override_font_sizes/font_size = 30
+text = "取消"
+
+[connection signal="pressed" from="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer/comfirm" to="." method="_on_comfirm_pressed"]
+[connection signal="pressed" from="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer/cancel" to="." method="_on_cancel_pressed"]

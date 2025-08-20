@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://cpq5y34gf8n8a"]
+
+[ext_resource type="Texture2D" uid="uid://cproxhccob85g" path="res://assets/sprites/Players/Player_1.png" id="1_ywxlb"]
+[ext_resource type="Script" uid="uid://4b0scqwykoj0" path="res://player_data/stats/stats.gd" id="2_olw5w"]
+
+[resource]
+script = ExtResource("2_olw5w")
+type = 0
+_name = "basic_player"
+nick_name = "小白"
+icon = ExtResource("1_ywxlb")
+attack_power = 2
+move_speed = 200
+health = 10
+critical_rate = 0.2
+shield = 10
+exp = 10
+max_health_base = 10
+attack_base = 2
+move_speed_base = 200.0
+shield_base = 10
+critical_rate_base = 0.1
+max_health_add = 0
+attack_add = 0
+move_speed_add = 0.0
+shield_add = 0
+critical_rate_add = 0.0
+equip_radius = 80
+equip_max = 3
+attack_speed_buff = 1
+drop_glod = 0
+drop_exp = 2
+metadata/_custom_type_script = "uid://4b0scqwykoj0"

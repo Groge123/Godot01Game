@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="UnitStats" load_steps=3 format=3 uid="uid://bu8deexek7tkq"]
+
+[ext_resource type="Texture2D" uid="uid://emsi6ifyt0vf" path="res://assets/sprites/Enemies/Enemy_5.png" id="1_7k4cb"]
+[ext_resource type="Script" uid="uid://4b0scqwykoj0" path="res://player_data/stats/stats.gd" id="1_d25ks"]
+
+[resource]
+script = ExtResource("1_d25ks")
+type = 1
+_name = "basic_enemy"
+nick_name = "hhh"
+icon = ExtResource("1_7k4cb")
+attack_power = 2
+move_speed = 200
+health = 8
+critical_rate = 0.0
+equip_radius = 0
+equip_max = 3
+attack_speed_buff = 1
+exp = 0
+shield = 0
+drop_glod = 1
+drop_exp = 2
+metadata/_custom_type_script = "uid://4b0scqwykoj0"

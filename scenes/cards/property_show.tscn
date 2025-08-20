@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc2xby0c4ywro"]
+
+[ext_resource type="Script" uid="uid://cvosbwhky7hmp" path="res://scripts/property_show.gd" id="1_jkyqn"]
+
+[node name="property_show" type="Panel"]
+custom_minimum_size = Vector2(400, 500)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jkyqn")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "当前属性"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SplitContainer" type="SplitContainer" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/SplitContainer"]
+layout_mode = 2
+
+[node name="data_show" type="HFlowContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/SplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 120
+theme_override_constants/v_separation = 10

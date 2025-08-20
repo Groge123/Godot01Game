@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbkdgx41xwvvm"]
+
+[ext_resource type="Script" uid="uid://b3444ltbt588x" path="res://scripts/track_line.gd" id="1_103o3"]
+
+[sub_resource type="Curve" id="Curve_j6jyk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[node name="track_line" type="Line2D"]
+z_index = 100
+width_curve = SubResource("Curve_j6jyk")
+script = ExtResource("1_103o3")
+is_spawn = true
