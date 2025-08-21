@@ -17,7 +17,6 @@ func _ready() -> void:
     
 func show_upgrade_page(level:int):
     print(level)
-    get_tree().paused=true
     upgrade_page.visible=true
     
     

@@ -1,36 +1,19 @@
-# **Godot Virtual Joystick**
+# Godot割草游戏开发指南：从原型到可玩版本
 
-- Desenvolvido para Godot 4
-- Documentação em Português
+## 目录
+1. [游戏核心设计](#1-游戏核心设计)
+2. [项目结构](#2-项目结构)
+3. [核心系统实现](#3-核心系统实现)
+4. [优化与扩展](#4-优化与扩展)
 
-------------
+## 1. 游戏核心设计
 
-#### Demostração
-[![Virtual Joystick](https://github.com/mcunha-br/virtual_joystick_godot4/blob/master/addons/virtual_joystick/sprites/capa_virtual_joystick.png?raw=true "Virtual Joystick")](https://www.youtube.com/watch?v=T56kGj-w5cM "Virtual Joystick")
+### 核心玩法
+玩家控制角色在封闭地图中自动攻击不断刷新的敌人，通过收集经验升级属性和解锁技能，生存至指定时间或击败最终BOSS。
 
-------------
+### 核心数值体系
+- 玩家属性：生命值、攻击力、攻击范围、攻击速度、移动速度
+- 敌人属性：生命值、伤害、移动速度、经验掉落
+- 成长曲线：每级所需经验 = 上一级 * 1.5，属性随等级线性增长
 
-#### Exemplo
-No vídeo acima, eu demonstro mostro como usar em um projeto 2D e 3D
-
-#### Configurando o Addon
-1. Coloque na pasta “addons” do seu projeto
-2. Acesse Project Settings -> Plugin e habilite o plugin “Virtual Joystick”
-
-
-------------
-
-#### Exemple
-In the video above, I demonstrate how to use it in a 2D and 3D project
-
-#### Configuring the Addon
-1. Put it in the “addons” folder of your project
-2. Go to Project Settings -> Plugin and enable the “Virtual Joystick” plugin 
-
---------------------------------
-
-Você usará esse código comercialmente? Fique tranquilo que você pode usar livremente e sem ter que falar nada, claro que ficarei feliz se você pelo menos lembrar da ajuda e compartilhar com os amigos ^_^ . Se você se sentir bem, considere me comprar um café -> [PicPay](https://drive.google.com/file/d/1gdOPqMZDVS8T_i8JToAUN2eQcC-Tn8qq/view?usp=sharing "PicPay")
-
----------------------------------
-
-Will you use this code commercially? Rest assured that you can use it freely and without having to say anything, of course I will be happy if you at least remember the help and share it with friends ^_^ . If you feel good, consider buying me a coffee -> [PicPay](https://drive.google.com/file/d/1gdOPqMZDVS8T_i8JToAUN2eQcC-Tn8qq/view?usp=sharing "PicPay") 
+## 2. 项目结构

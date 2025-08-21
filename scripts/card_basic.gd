@@ -12,12 +12,7 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
     GlobalData.cur_player_name=data._name
     print(GlobalData.cur_player_name)
-    show_player_card.set_tex(data.icon)
-    show_player_card._set_name(data.nick_name)
-    show_player_card._set_crit_rate(data.critical_rate)
-    show_player_card._set_health(data.health)
-    show_player_card._set_speed(data.move_speed)
-    show_player_card._set_ap(data.attack_power)
+    show_player_card.set_data(data)
     
     
     

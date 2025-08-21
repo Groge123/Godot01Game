@@ -17,7 +17,9 @@ func show_attr():
         
         for i in GlobalData.Property["player"]:
             var power=Label.new()
-            power.text=tr(i)+":"+str(player[i])
+            var base=player.Data[i+str("_base")]
+            var add=player.Data[i+str("_add")]
+            power.text=tr(i)+":"+str(base+add)
             data_show.add_child(power)
 func _process(delta: float) -> void:
     show_attr()

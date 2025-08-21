@@ -2,7 +2,7 @@ extends Control
 
 
 func _on_begin_pressed() -> void:
-    SceneLoader.change_scene_with_circle("res://scenes/main_scene/select_player.tscn")
+    SceneLoader.change_scene_with_progress("res://scenes/main_scene/select_player.tscn")
     
 
 func _on_content_pressed() -> void:

@@ -8,8 +8,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     if visible:
         get_tree().paused=true
-    else:
-        get_tree().paused=false
+        
 
 
 func _on_comfirm_pressed() -> void:
@@ -18,3 +17,4 @@ func _on_comfirm_pressed() -> void:
 
 func _on_cancel_pressed() -> void:
     visible=false
+    get_tree().paused=false

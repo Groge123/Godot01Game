@@ -10,29 +10,12 @@ extends Control
 
 func _ready() -> void:
     var data=preload("res://player_data/basic_player.tres")
-    set_tex(data.icon)
-    _set_name(data.nick_name)
-    _set_crit_rate(data.critical_rate)
-    _set_health(data.health)
-    _set_speed(data.move_speed)
-    _set_ap(data.attack_power)
-
-
-
-func set_tex(tex:Texture):
-    sprite.texture=tex
-    
-func _set_name(text:String):
-    _name.text=text
-
-func _set_health(hx:int):
-    health.text=str(hx)
-func _set_ap(a:int):
-    ap.text=str(a)
-    
-func _set_speed(sp:int):
-    speed.text=str(sp)
-    
-func _set_crit_rate(ct:float):
-    crit_rate.text=str(ct*100)
+    set_data(data)
+func set_data(data:UnitStats):
+    sprite.texture=data.icon
+    _name.text=data.nick_name
+    health.text=str(data.health_base)
+    ap.text=str(data.attack_power_base)
+    crit_rate.text=str(data.critical_rate_base)
+    speed.text=str(data.move_speed_base)
     

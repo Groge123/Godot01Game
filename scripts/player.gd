@@ -8,19 +8,13 @@ var all_weapon={
     "pistol":preload("res://scenes/weapon/pistol.tscn"),
     "punch":preload("res://scenes/weapon/punch.tscn")
 }
-var cur_weapon={
-    
-}
-
 
     
 func _ready() -> void:
-    init_data()
+    super._ready()
+    add_weapon("pistol")
     
-    for i in range(cur_weapon_num):
-        add_weapon("pistol")
-    
-    set_critical_rate(cur_crit_rate)
+    set_critical_rate(Data.critical_rate)
     var stick_dir=get_tree().current_scene.find_child("joystick")
     if stick_dir:
         stick_dir.connect("direction_changed",_on_direction)
@@ -37,7 +31,7 @@ func _process(delta: float) -> void:
         move_dir=joystick_dir
     else:
         move_dir=Input.get_vector("move_left","move_right","move_up","move_down")
-    cur_velocity=move_dir*move_speed
+    cur_velocity=move_dir*Data.move_speed
     
     position += cur_velocity * delta
     position.x = clamp(position.x, GlobalData.boundary.x, GlobalData.boundary.z)
@@ -49,11 +43,11 @@ func _process(delta: float) -> void:
     update_level()
     
 func update_level():
-    if cur_exp>=cur_exp_max:
-        level+=1
-        cur_exp=cur_exp_max-cur_exp
-        cur_exp_max*=(1+0.2)
-        upgrade.emit(level)
+    if Data.cur_exp>=Data.exp_max:
+        Data.level+=1
+        Data.cur_exp=Data.exp_max-Data.cur_exp
+        Data.exp_max*=Data.exp_increase_rate
+        upgrade.emit(Data.level)
 
 
 # 设置暴击率
@@ -84,23 +78,21 @@ func add_weapon(type:String):
         
         weapons.add_child(wp)
         sort_weapon()
-        cur_weapon[type]=wp
-        print(cur_weapon)
+        Data.cur_weapon.append(wp)
+        print(wp._name)
 # 整理武器position
 func sort_weapon():
-    var r = cur_equip_radius  # 分布半径
-    cur_weapon_num = weapons.get_child_count()
-    
-    if cur_weapon_num == 0:
+    var r = Data.equip_radius  # 分布半径
+    if Data.cur_weapon.is_empty():
         return  # 无武器时直接返回
-    
+    var wp_num=weapons.get_child_count()
     # 计算相邻武器的角度间隔（360°均匀分布）
-    var angle_step = 2 * PI / cur_weapon_num  # 例如3个武器时，间隔为120°（2π/3弧度）
+    var angle_step = 2 * PI / wp_num  # 例如3个武器时，间隔为120°（2π/3弧度）
     var i = 0
     for wp in weapons.get_children():
         # 核心：角度起始点为90°（Y轴正方向），向两侧均匀分布
         # 公式：初始角度（PI/2） ± 间隔角度的一半，确保Y轴对称
-        var angle = PI/2 - (i * angle_step - angle_step * (cur_weapon_num - 1) / 2)
+        var angle = PI/2 - (i * angle_step - angle_step * (wp_num - 1) / 2)
         # 极坐标转直角坐标
         wp.position = Vector2(
             r * cos(angle),  # X坐标（左右）
@@ -112,7 +104,5 @@ func sort_weapon():
 func _on_area_entered(area: Area2D) -> void:
     if area.is_in_group("coin"):
         area.pick_up.connect(pick_up_coins)
-        
-        
 func pick_up_coins(val:int):
-    coin_num+=val
+    Data.coins+=val

@@ -14,22 +14,24 @@ var player:Basic_Player
 func _ready() -> void:
     player=get_tree().get_first_node_in_group("player")
     if player:
-        icon.texture=player.icon
+        icon.texture=player.Data.icon
         show_data()
         
 func show_data():
-    ex.max_value=player.cur_exp_max
-    ex.value=player.cur_exp
-    coins.text=str(player.coin_num)
-    hp_bar.max_value=player.health_max
-    hp_bar.value=player.cur_health        
+    var max_health=player.Data.health_base+player.Data.health_add
+    var max_shield=player.Data.shield_base+player.Data.shield_add
+   
+    ex.max_value=player.Data.exp_max
+    ex.value=player.Data.cur_exp
+    coins.text=str(player.Data.coins)
+    hp_bar.max_value=max_health
+    hp_bar.value=player.Data.health   
+    hp.text=str(player.Data.health)+"/"+str(max_health)
+    lv.text="LV: "+str(int(player.Data.level))
     
-    hp.text=str(player.cur_health)+"/"+str(player.health_max)
-    lv.text="LV: "+str(player.level)
-    
-    shield.text=str(player.cur_shield)+"/"+str(player.shield_max)
-    shield_bar.max_value=player.shield_max
-    shield_bar.value=player.cur_shield    
+    shield.text=str(player.Data.shield)+"/"+str(max_shield)
+    shield_bar.max_value=max_shield
+    shield_bar.value=player.Data.shield
 func _process(delta: float) -> void:
     if player:
         show_data()
