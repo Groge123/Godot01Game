@@ -68,7 +68,7 @@ func _on_gui_input(event: InputEvent) -> void:
             if cur_name in Attribute_Card.all_weapon_name:
                 player.add_weapon(cur_name)
             else :
-                player[cur_name]+=cur_value
+                player.Data[cur_name]+=cur_value
         anim.play("fade_out")
         await anim.animation_finished
         queue_free()

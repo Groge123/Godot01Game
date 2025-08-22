@@ -18,7 +18,7 @@ func _ready() -> void:
     pass
 
 func _on_level_won():
-    get_tree().change_scene_to_file("res://scenes/begin_scene.tscn")
+    SceneLoader.change_scene_with_circled("res://scenes/begin_scene.tscn")
 func _process(delta: float) -> void:
     if cur_nums<all_enemy_num and can_add:
         

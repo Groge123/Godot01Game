@@ -3,6 +3,8 @@ extends Node2D
 class_name Weapon
 var can_attack=true
 
+
+
 @onready var sprite: Sprite2D = $Sprite
 @onready var timer: Timer = $Timer
 @onready var shader:ShaderMaterial=$Sprite.material
@@ -10,6 +12,7 @@ var can_attack=true
 @export var weapon_data:weapon_stats
 @export var attack_sound:AudioStream
 
+@export var _name="weapon"
 var target_rotation: float = 0.0
 var target_enemy: Area2D = null
 var init_rotation:float=0.0
@@ -34,6 +37,8 @@ func _ready() -> void:
 
 
 func _process(delta):
+    if GlobalData.cur_Player:
+        $Timer.wait_time=max(GlobalData.cur_Player.Data.attack_speed,0.0)
     update_rotation()
     
     update_nearest_enemy()

@@ -19,7 +19,7 @@ func shoot():
     var player=GlobalData.cur_Player
     var bt:Bullet=bullet.instantiate()
     bt.target_group=bt.groups.player
-    print(bt.target_group)
+    #print(bt.target_group)
     bt.global_position=shot_pos.global_position
     get_tree().root.add_child(bt)
     bt.shoot(player,basic_data.attack_power,false)

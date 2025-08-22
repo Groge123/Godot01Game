@@ -67,7 +67,7 @@ func die():
     await anim.animation_finished
     
     spawn_coins()
-    GlobalData.cur_Player.cur_exp+=cur_drop_exp
+    GlobalData.cur_Player.Data.cur_exp+=cur_drop_exp
     
     queue_free()
 # 生成金币

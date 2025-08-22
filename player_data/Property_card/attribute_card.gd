@@ -53,25 +53,25 @@ const ATTR_GROUP={
     
 }
 const ATTR={
-    "health_max":{
+    "health_add":{
         "group":ATTR_GROUP.health,
         "type":"type1",
         "range":"1-5",
         "var":"int"
     },
-    "shield_max":{
+    "shield_add":{
         "group":ATTR_GROUP.defence,
         "type":"type1",
         "range":"1-5",
         "var":"int"
     },
-    "cur_crit_rate":{
+    "critical_rate_add":{
         "group":ATTR_GROUP.attack,
         "type":"type4",
         "range":"0.1-0.2",
         "var":"float"
     },
-    "cur_attack_speed":{
+    "attack_speed_add":{
         "group":ATTR_GROUP.attack,
         "type":"type3",
         "range":"1.1-1.5",

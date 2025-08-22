@@ -3,7 +3,7 @@ extends Node
 const damage_text=preload("res://scenes/damage_text.tscn")
 
 var boundary:Vector4
-var cur_Player:Node2D
+var cur_Player:Player
 var cur_player_name:String="basic_player"
 var player_list:Dictionary[String,Resource]=\
 {"basic_player":preload("res://scenes/Character/basic_player.tscn")
@@ -16,12 +16,12 @@ var player_list:Dictionary[String,Resource]=\
 var Property={
     "player":
     [
-    "health_max",
-    "equip_max",
-    "shield_max",
-    "cur_crit_rate",
-    "cur_attack_power",
-    "cur_attack_speed",
+    "health",
+    "equip_radius",
+    "shield",
+    "critical_rate",
+    "attack_power",
+    "attack_speed",
     "move_speed"
     ],
     "enemy":[

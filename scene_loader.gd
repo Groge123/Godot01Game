@@ -49,6 +49,34 @@ func change_scene_with_circle(path:String):
     color_rect.hide()
     is_switch = false  # 隐藏时设置为false
 
+func change_scene_with_progress(path:String):
+    color_rect.color.a = 1
+    var material=load("res://shader/progress.gdshader")
+    var s=ShaderMaterial.new()
+    s.shader=material.duplicate()
+    color_rect.material=s
+    var shader:ShaderMaterial = color_rect.material
+    layer = 1000
+    color_rect.show()
+    is_switch = true  # 显示时设置为true
+    print(shader.get_shader_parameter("progress"))
+    var tween = create_tween()
+    tween.set_ease(Tween.EASE_IN)
+    tween.tween_method(func(value):
+        shader.set_shader_parameter("progress", value)
+    , 0.0, 1.0, 1)
+    await tween.finished
+    
+    await change_scene_async(path)
+    
+    var tween_out = create_tween()
+    tween_out.tween_method(func(value):
+        shader.set_shader_parameter("progress", value)
+    , 1.0,0.0, 1)
+    await tween_out.finished
+    
+    color_rect.hide()
+    is_switch = false  # 隐藏时设置为false
 func change_scene_async(path:String):
     ResourceLoader.load_threaded_request(path)
     
