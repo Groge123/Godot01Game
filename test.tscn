@@ -4,7 +4,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8uh7m"]
 shader = ExtResource("1_37kl0")
-shader_parameter/progress = 0.0
+shader_parameter/progress = 1.0
 shader_parameter/reverse = false
 shader_parameter/num_of_tiles = Vector2(32, 18)
 

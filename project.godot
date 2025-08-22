@@ -24,6 +24,7 @@ boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="uid://cproxhccob85g"
+boot_splash/stretch/aspect="expand"
 
 [autoload]
 

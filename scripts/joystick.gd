@@ -9,32 +9,34 @@ var is_dragging = false
 var radius_size = 0.0
 var start_position = Vector2.ZERO
 var current_direction = Vector2.ZERO
+var active_touch_id = -1  # 跟踪当前激活的触摸ID
 
 func _ready() -> void:
     radius_size = radius.texture.get_width() / 2
     dragbtn.visible = false
     radius.visible = false
-    
-    # 设置鼠标过滤
 
 func _input(event: InputEvent) -> void:
-    # 鼠标/触摸按下
-    if event is InputEventScreenTouch and event.is_pressed():
-        start_drag(event.position)
+    # 处理触摸按下事件
+    if event is InputEventScreenTouch:
+        if event.is_pressed():
+            # 修正：使用event.position获取触摸位置，而非未定义的position
+            if event.position.x < get_viewport().size.x/2 and not is_dragging:
+                active_touch_id = event.index
+                start_drag(event.position)
+        else:
+            # 只有对应的触摸ID才能结束拖拽
+            if event.index == active_touch_id:
+                end_drag()
+                active_touch_id = -1  # 重置触摸ID
     
-    # 鼠标/触摸释放
-    elif event is InputEventScreenTouch and not event.is_pressed():
-        end_drag()
-    
-    # 拖拽（在Godot 4.x中，拖拽事件包含在ScreenTouch中）
+    # 处理触摸拖拽事件
     elif event is InputEventScreenDrag:
-        update_drag(event.position)
-
+        # 只有对应的触摸ID才能更新拖拽
+        if event.index == active_touch_id and is_dragging:
+            update_drag(event.position)
 
 func start_drag(position: Vector2) -> void:
-    # 只在左半边屏幕移动
-    if position.x>get_viewport().size.x/2:
-        return
     is_dragging = true
     start_position = position
     
@@ -57,8 +59,6 @@ func update_drag(position: Vector2) -> void:
     # 如果拖拽距离超过摇杆半径，限制在圆内
     if distance > radius_size:
         direction = direction.normalized() * radius_size
-    else:
-        direction = direction
     
     # 设置按钮位置（相对于摇杆）
     dragbtn.position = direction

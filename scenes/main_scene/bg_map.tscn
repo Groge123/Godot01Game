@@ -153,6 +153,7 @@ tile_map_data = PackedByteArray("AAD//wAAAwACAAEAAAD//wEAAwACAAEAAAD//wIAAwACAAE
 tile_set = SubResource("TileSet_h1ert")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
 process_callback = 0
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
