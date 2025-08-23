@@ -33,11 +33,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     if active==false:
         return
-    
+    if !GlobalData.cur_Player:
+        return
     if can_move:
         move(delta)
-    if cur_health<=0:
-        die()
 func move(delta):
     get_direction()
     var velocity=dir*move_speed*delta
@@ -46,7 +45,7 @@ func move(delta):
     global_position.y = clamp(global_position.y, GlobalData.boundary.y, GlobalData.boundary.w)
     
 func hurt(damage:int,is_critical=false):
-    if cur_health<=0:
+    if !active:
         return 
     var tween=get_tree().create_tween()
     tween.tween_property($".","position",position-dir*move_speed*0.1,0.1)
@@ -58,11 +57,12 @@ func hurt(damage:int,is_critical=false):
     cur_health-=damage
     if cur_health<=0:
         cur_health=0
+        active=false
+        die()
     GlobalData.show_damage_text(self,str(damage),text_color)
     
 
 func die():
-    active=false
     anim.play("die")
     await anim.animation_finished
     

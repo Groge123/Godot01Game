@@ -3,7 +3,10 @@ extends Player
 class_name Basic_Player
 
 @onready var weapons: Node2D = $Weapons
+@onready var recover_shield_timer: Timer = $recover_shield_timer
 
+var is_recover=false
+var is_active=true
 var all_weapon={
     "pistol":preload("res://scenes/weapon/pistol.tscn"),
     "punch":preload("res://scenes/weapon/punch.tscn")
@@ -11,8 +14,8 @@ var all_weapon={
 
     
 func _ready() -> void:
-    super._ready()
-    add_weapon("pistol")
+    Data=basic_data.duplicate()
+    #add_weapon("pistol")
     
     set_critical_rate(Data.critical_rate)
     var stick_dir=get_tree().current_scene.find_child("joystick")
@@ -26,6 +29,8 @@ func _on_direction(dir:Vector2):
     #print(dir)
         
 func _process(delta: float) -> void:
+    if is_active==false:
+        return
     # 获取当前场景的根节点
     if joystick_dir!=Vector2.ZERO:
         move_dir=joystick_dir
@@ -39,9 +44,16 @@ func _process(delta: float) -> void:
     
     update_anim()
     update_flip()
-    
+    recover_shield()
     update_level()
-    
+func recover_shield():
+    if !is_recover:
+        return
+    var max_shield=Data.shield_base+Data.shield_add
+    if Data.shield<max_shield:
+        Data.shield+=1
+        is_recover=false
+        recover_shield_timer.wait_time=1.5
 func update_level():
     if Data.cur_exp>=Data.exp_max:
         Data.level+=1
@@ -54,7 +66,6 @@ func update_level():
 func set_critical_rate(ct:float):
     for wp in weapons.get_children():
         wp.set_critical_rate(ct)
-
 # 更新动画
 func update_anim():
     if move_dir.length()>0:
@@ -62,7 +73,6 @@ func update_anim():
     else:
         sprite.rotation=0
         anim.play("idle")
-        
 # 更新翻转方向
 func update_flip():
     if move_dir.x==0:
@@ -100,9 +110,37 @@ func sort_weapon():
         )
         i += 1
 
+func hurt(damage:int,is_critical:bool=false):
+    if Data.health<=0:
+        die()
+        return
+    if is_critical:
+        damage*=2
+    if Data.shield-damage>0:
+        Data.shield-=damage
+    else:
+        Data.health=max(Data.health-damage+Data.shield,0)
+        Data.shield=0
+    recover_shield_timer.wait_time=1.5
+    recover_shield_timer.start()
+    is_recover=false
+    
+func die():
+    if !is_active:
+        return
+    print("die")
+    is_active=false
+    anim.play("die")
+    await anim.animation_finished
+    SceneLoader.change_scene_with_progress("res://scenes/main_scene/select_player.tscn")
 
 func _on_area_entered(area: Area2D) -> void:
     if area.is_in_group("coin"):
         area.pick_up.connect(pick_up_coins)
 func pick_up_coins(val:int):
     Data.coins+=val
+
+
+func _on_recover_shield_timeout() -> void:
+    is_recover=true
+    pass # Replace with function body.

@@ -39,7 +39,7 @@ func generate_card():
             cur_value=randf_range(min,max)
             cur_value=round(cur_value * 100) / 100
         "weapon":
-            cur_value=1    
+            cur_value=1
     data.text=tr(cur_name)+"+"+str(cur_value)
     
 
@@ -69,6 +69,8 @@ func _on_gui_input(event: InputEvent) -> void:
                 player.add_weapon(cur_name)
             else :
                 player.Data[cur_name]+=cur_value
+                var now_attr=cur_name.trim_suffix("_add")
+                player.Data[now_attr]+=cur_value #增加当前属性
         anim.play("fade_out")
         await anim.animation_finished
         queue_free()

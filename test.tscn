@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://2yscf62v1ipf"]
+[gd_scene load_steps=4 format=3 uid="uid://2yscf62v1ipf"]
 
 [ext_resource type="Shader" uid="uid://bhki060npxi45" path="res://shader/progress.gdshader" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://dyrd7vr6k4kts" path="res://test.gd" id="2_8uh7m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8uh7m"]
 shader = ExtResource("1_37kl0")
@@ -16,3 +17,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+script = ExtResource("2_8uh7m")

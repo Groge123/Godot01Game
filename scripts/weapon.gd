@@ -14,9 +14,9 @@ var can_attack=true
 
 @export var _name="weapon"
 var target_rotation: float = 0.0
-var target_enemy: Area2D = null
+var target_enemy: Enemy = null
 var init_rotation:float=0.0
-var enemys_list:Array[Node2D]
+var enemys_list:Array[Enemy]
 var is_attacking=false
 
 var cur_crit_rate:float # 暴击率
@@ -27,7 +27,7 @@ var icon:Texture
 
 func init_data():
     cur_crit_rate=weapon_data.critical_chance
-    interval_time=weapon_data.interval_time
+    interval_time=weapon_data.attack_speed_base
     attack_range=weapon_data.attack_range
     basic_damage=weapon_data.basic_damage
     icon=weapon_data.icon
@@ -38,7 +38,8 @@ func _ready() -> void:
 
 func _process(delta):
     if GlobalData.cur_Player:
-        $Timer.wait_time=max(GlobalData.cur_Player.Data.attack_speed,0.0)
+        var at_speed=weapon_data.attack_speed_base/GlobalData.cur_Player.Data.attack_speed
+        $Timer.wait_time=max(at_speed,0.0)
     update_rotation()
     
     update_nearest_enemy()
@@ -73,11 +74,11 @@ func update_rotation():
 func update_nearest_enemy():
     if !can_attack or enemys_list.is_empty():
         return
-    var nearest_enemy: Area2D = null
+    var nearest_enemy: Enemy = null
     var min_distance: float = INF
     
     for enemy in enemys_list:
-        if not enemy:
+        if not enemy or !enemy.active:
             enemys_list.erase(enemy)
             continue
         # 计算与当前武器的距离

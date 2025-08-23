@@ -8,6 +8,6 @@ script = ExtResource("2_uc6e5")
 basic_damage = 5
 critical_chance = 0.3
 attack_range = 350
-interval_time = 0.5
+attack_speed_base = 0.6
 icon = ExtResource("1_1j2c4")
 metadata/_custom_type_script = "uid://mhiyqf6mmxdd"

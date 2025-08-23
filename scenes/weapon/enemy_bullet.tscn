@@ -5,6 +5,7 @@
 
 [node name="enemy_bullet" instance=ExtResource("1_kigit")]
 collision_mask = 11
+speed = 500
 target_group = "player"
 
 [node name="texture" parent="." index="0"]

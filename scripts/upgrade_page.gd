@@ -18,7 +18,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     if visible:
         get_tree().paused=true
-        print("paused the game")
     if visible==false or player==null:
         return
     if player:

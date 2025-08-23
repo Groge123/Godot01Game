@@ -10,4 +10,5 @@ func _process(delta: float) -> void:
     #var velocity=(player.position-position).normalized()
     #position+=velocity*speed*delta
     #print("position=",position)
-    position=GlobalData.cur_Player.position
+    if GlobalData.cur_Player:
+        position=GlobalData.cur_Player.position

@@ -21,7 +21,7 @@ func shoot():
     bt.target_group=bt.groups.player
     #print(bt.target_group)
     bt.global_position=shot_pos.global_position
-    get_tree().root.add_child(bt)
+    get_tree().current_scene.add_child(bt)
     bt.shoot(player,basic_data.attack_power,false)
     pass
 func _on_vision_area_area_entered(area: Area2D) -> void:

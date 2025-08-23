@@ -13,14 +13,14 @@ func _process(delta: float) -> void:
 
 
 func shoot():
-    if can_attack and target_enemy:
+    if can_attack and target_enemy and target_enemy.active:
         var b=bullet.instantiate()
         b.global_position=fire_pos.global_position
         b.rotation=Vector2(target_enemy.global_position-global_position).angle()
         b.target_group=b.groups.enemy
         var is_crit=randf()<cur_crit_rate
         
-        get_tree().root.add_child(b)
+        get_tree().current_scene.add_child(b)
         b.shoot(target_enemy,basic_damage,is_crit)
         AudioManager.play_sfx(attack_sound.resource_path)
         can_attack=false

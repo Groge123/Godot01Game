@@ -40,3 +40,8 @@ func random_tile():
     print(bg_1.map_to_local(s))
     GlobalData.emit_signal("create_map"\
     ,Vector4(t2.x,t2.y,t.x,t.y))
+
+func _exit_tree() -> void:
+    AudioManager.pause_play_music()
+    
+    
