@@ -1,0 +1,129 @@
+[gd_scene load_steps=7 format=3 uid="uid://s3opjhgueave"]
+
+[ext_resource type="PackedScene" uid="uid://0wrlw2re43ud" path="res://scenes/cards/weapon_data_card.tscn" id="1_d3dwf"]
+[ext_resource type="Script" uid="uid://by6j2ne88yc01" path="res://scripts/select_weapon.gd" id="1_rjmcm"]
+[ext_resource type="Texture2D" uid="uid://cyh23wqn8vcac" path="res://assets/sprites/Weapons/Icons/weapon_punch_icon.png" id="3_3kwrj"]
+[ext_resource type="Texture2D" uid="uid://ctbl7s5o37g7v" path="res://assets/sprites/Weapons/Icons/weapon_pistol_icon.png" id="4_vsy5v"]
+[ext_resource type="PackedScene" uid="uid://c5mo4w71cnmo1" path="res://scenes/UI/button_with_sound.tscn" id="5_3kwrj"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_hsdyc"]
+
+[node name="select_weapon" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjmcm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 300
+
+[node name="weapon_data_card" parent="MarginContainer/VSplitContainer/MarginContainer2" instance=ExtResource("1_d3dwf")]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer"]
+custom_minimum_size = Vector2(0, 490)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 50
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VSplitContainer/MarginContainer"]
+custom_minimum_size = Vector2(800, 490)
+layout_mode = 2
+size_flags_horizontal = 4
+follow_focus = true
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/VSplitContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer2"]
+layout_mode = 2
+columns = 6
+
+[node name="punch" type="Button" parent="MarginContainer/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer2/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_hsdyc")
+icon = ExtResource("3_3kwrj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="pistol" type="Button" parent="MarginContainer/VSplitContainer/MarginContainer/ScrollContainer/CenterContainer2/GridContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+toggle_mode = true
+keep_pressed_outside = true
+button_group = SubResource("ButtonGroup_hsdyc")
+icon = ExtResource("4_vsy5v")
+icon_alignment = 1
+expand_icon = true
+
+[node name="exit" parent="." instance=ExtResource("5_3kwrj")]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_type_variation = &"ButtonPrimary"
+theme_override_font_sizes/font_size = 60
+text = "exit"
+
+[node name="enter" parent="." instance=ExtResource("5_3kwrj")]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_type_variation = &"ButtonPrimary"
+theme_override_font_sizes/font_size = 60
+text = "enter"
+
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="enter" to="." method="_on_enter_pressed"]

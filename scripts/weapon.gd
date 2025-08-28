@@ -3,8 +3,6 @@ extends Node2D
 class_name Weapon
 var can_attack=true
 
-
-
 @onready var sprite: Sprite2D = $Sprite
 @onready var timer: Timer = $Timer
 @onready var shader:ShaderMaterial=$Sprite.material

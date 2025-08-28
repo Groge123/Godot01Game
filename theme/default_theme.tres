@@ -1,9 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b6h4sa3tl3yu3"]
-
-[ext_resource type="FontFile" uid="uid://dt7l5rfwhbhf" path="res://assets/font/AlimamaDongFangDaKai-Regular.ttf" id="1_ag65a"]
-
-[resource]
-default_font = ExtResource("1_ag65a")
-default_font_size = 24
-Button/font_sizes/font_size = 36
-Button/fonts/font = ExtResource("1_ag65a")

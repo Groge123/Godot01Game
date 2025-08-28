@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_1kxnh")
+_name = "punch"
 basic_damage = 2
 critical_chance = 0.1
 attack_range = 300

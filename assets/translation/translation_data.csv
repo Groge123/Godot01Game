@@ -14,6 +14,7 @@ critical_rate_add,暴击率,cur_critical_rate
 attack_power_add,攻击力,cur_attack_power
 attack_speed_add,攻击速度,cur_attack_speed
 move_speed_add,速度,move_speed
+base_attack,基础攻击,base_attack
 
 
 weapon,武器,weapon

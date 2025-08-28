@@ -4,7 +4,7 @@ extends Control
 
 func _on_enter_pressed() -> void:
     GlobalData.cur_Player=GlobalData.player_list[GlobalData.cur_player_name].instantiate()
-    SceneLoader.change_scene_with_progress("res://scenes/main_scene/bg_map.tscn")
+    SceneLoader.change_scene_with_progress("res://scenes/main_scene/select_weapon.tscn")
 
 
 func _on_exit_pressed() -> void:

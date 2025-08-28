@@ -4,7 +4,6 @@ class_name Enemy
 @onready var vision_area: Area2D = $vision_area
 @onready var health_bar: Control = $health_bar
 
-@onready var enemy: Area2D = $"."
 @export var push_force:int
 @export var coin_scene:PackedScene
 

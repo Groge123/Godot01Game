@@ -14,4 +14,4 @@ func _on_set_pressed() -> void:
 
 
 func _on_exit_pressed() -> void:
-    pass # Replace with function body.
+    GlobalData.quit_dialog.show()

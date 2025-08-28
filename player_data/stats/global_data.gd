@@ -12,7 +12,6 @@ var player_list:Dictionary[String,Resource]=\
 ,"rabbit":preload("res://scenes/Character/rabbit.tscn")
 ,"pirate":preload("res://scenes/Character/pirate.tscn")}
 
-
 var Property={
     "player":
     [

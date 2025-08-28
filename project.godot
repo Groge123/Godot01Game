@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="割草游戏"
+config/name="LALALA"
 config/description="leisure game"
 config/version="0.0001"
 run/main_scene="uid://cnar0t66qmyaw"
@@ -19,12 +19,12 @@ config/auto_accept_quit=false
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=120
-boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="uid://cproxhccob85g"
-boot_splash/stretch/aspect="expand"
+config/icon="uid://cpccpdbtpgxgm"
+config/windows_native_icon="res://assets/icons/favicon.ico"
 
 [autoload]
 
@@ -36,9 +36,9 @@ AudioManager="*res://addons/SodaAudioManager/Scenes/soda_audio_manager.scn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/window_width_override=1080
+window/size/window_width_override=1280
 window/size/window_height_override=720
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]
@@ -118,3 +118,4 @@ disable_update_check=false
 textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
 textures/decals/filter=0
+environment/defaults/default_clear_color=Color(0.180392, 0.180392, 0.180392, 1)

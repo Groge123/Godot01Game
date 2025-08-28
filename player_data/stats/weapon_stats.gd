@@ -2,6 +2,7 @@ extends Resource
 
 class_name weapon_stats
 
+@export var _name=""
 @export var basic_damage:int
 @export var critical_chance:float
 

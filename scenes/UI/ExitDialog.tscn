@@ -1,25 +1,117 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhqq26dddnxfv"]
+[gd_scene load_steps=7 format=3 uid="uid://bhqq26dddnxfv"]
 
 [ext_resource type="Script" uid="uid://ld06t4ubirtx" path="res://scripts/exit_dialog.gd" id="1_q1gmt"]
 [ext_resource type="Theme" uid="uid://g30aski2oekw" path="res://theme/themes/main_theme.tres" id="2_m0y0o"]
+
+[sub_resource type="Animation" id="Animation_m0y0o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HSplitContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HSplitContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q1gmt"]
+resource_name = "fade_in"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HSplitContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HSplitContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a2g1a"]
+resource_name = "fade_out"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HSplitContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.95)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HSplitContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_drf5s"]
+_data = {
+&"RESET": SubResource("Animation_m0y0o"),
+&"fade_in": SubResource("Animation_q1gmt"),
+&"fade_out": SubResource("Animation_a2g1a")
+}
 
 [node name="exit_dialog" type="CanvasLayer"]
 process_mode = 3
 layer = 128
 script = ExtResource("1_q1gmt")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(0.25098, 0.25098, 0.25098, 0.25098)
 
-[node name="HSplitContainer" type="VSplitContainer" parent="Control"]
-layout_mode = 1
+[node name="HSplitContainer" type="VSplitContainer" parent="."]
+custom_minimum_size = Vector2(500, 400)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -31,16 +123,17 @@ offset_right = 242.0
 offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(250, 200)
 split_offset = 80
 dragging_enabled = false
 dragger_visibility = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/HSplitContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer"]
 layout_mode = 2
 theme = ExtResource("2_m0y0o")
 theme_type_variation = &"PanelContainerWarningFlat"
 
-[node name="Label" type="Label" parent="Control/HSplitContainer/PanelContainer"]
+[node name="Label" type="Label" parent="HSplitContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 36
@@ -48,28 +141,33 @@ text = "确认退出吗"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="Control/HSplitContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="HSplitContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/HSplitContainer/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/PanelContainer2"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/HSplitContainer/PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/PanelContainer2/MarginContainer"]
 layout_mode = 2
 
-[node name="comfirm" type="Button" parent="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="comfirm" type="Button" parent="HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"ButtonPrimary"
 theme_override_font_sizes/font_size = 30
 text = "确认退出"
 
-[node name="cancel" type="Button" parent="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="cancel" type="Button" parent="HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"ButtonDanger"
 theme_override_font_sizes/font_size = 30
 text = "取消"
 
-[connection signal="pressed" from="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer/comfirm" to="." method="_on_comfirm_pressed"]
-[connection signal="pressed" from="Control/HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer/cancel" to="." method="_on_cancel_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_drf5s")
+}
+
+[connection signal="pressed" from="HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer/comfirm" to="." method="_on_comfirm_pressed"]
+[connection signal="pressed" from="HSplitContainer/PanelContainer2/MarginContainer/VBoxContainer/cancel" to="." method="_on_cancel_pressed"]
